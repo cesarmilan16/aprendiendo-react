@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-export function TwitterFollowCard ({ children, userName = "unknown" }) {
-    const [isFollowing, setIsFollowing] = useState(false)
+export function TwitterFollowCard ({ children, userName = "unknown", initialIsFollowing }) {
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
 
     const text = isFollowing ? "Siguiendo" : "Seguir" // Es una ternaria, un if abreviado
     const buttonClassName = isFollowing
@@ -27,7 +27,8 @@ export function TwitterFollowCard ({ children, userName = "unknown" }) {
 
             <aside>
                 <button className={buttonClassName} onClick={handleClick}>
-                    {text}
+                    <span className="tw-followCard-text">{text}</span>
+                    <span className="tw-followCard-stopFollow">Dejar de seguir</span>
                 </button>
             </aside>
         </article>
