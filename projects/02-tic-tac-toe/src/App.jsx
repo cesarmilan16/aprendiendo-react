@@ -72,11 +72,10 @@ function App() {
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
     // revisar si hay un ganador
-    const newWinner = checkWinner(newBoard)
+    const newWinner = checkWinner(newBoard) // Esto es asincrono
     if (newWinner) {
-      setWinner(newWinner) // Esto es asincrono
-      alert('Ganó ' + newWinner)
-    }
+      setWinner(newWinner)
+    } // TODO: check if game is over
   }
 
   return (
@@ -106,6 +105,30 @@ function App() {
           {TURNS.O}
         </Square>
       </section>
+
+      {
+        winner !== null && (
+          <section className="winner">
+            <div className="text">
+              <h2>
+                {
+                  winner === false
+                    ? 'Empate'
+                    : 'Ganó: '
+                }
+              </h2>
+
+              <header className="win">
+                {winner && <Square>{winner}</Square>}
+              </header>
+
+              <footer>
+                <button>Empezar de nuevo</button>
+              </footer>
+            </div>
+          </section>
+        )
+      }
     </main>
   )
 }
